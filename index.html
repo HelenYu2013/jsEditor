@@ -72,6 +72,9 @@
                 self.iframeDocument.write('<html><head><style type="text/css">body{ font-family:arial; font-size:13px;background:#f1f1f1 }</style></head></html>');
                 self.iframeDocument.close();
             },
+            /**
+             * 功能区
+             */
             createMenu: function(){
                 var newArr = [];
                     self = this,
@@ -82,6 +85,9 @@
                 }
                 self.menuObj.innerHTML =  newArr.join('');
             },
+            /**
+             * 事件绑定
+             */
             bindEvent: function(){
                 var self = this;
                 self.on(self.menuObj, 'click', function(ev){
@@ -91,6 +97,10 @@
                     }
                 });
             },
+            /**
+             * 给当前文档或者选中内容添加样式
+             * @param command
+             */
             changeStyle: function(command){
                 var self = this;
                 switch(command){
@@ -125,6 +135,12 @@
             on: function(element, type, handler) {
                 element.addEventListener ? element.addEventListener(type, handler, false) : element.attachEvent("on" + type, handler);
             },
+            /**
+             * 简单的事件代理实现
+             * @param e
+             * @param tagName
+             * @returns {*|Object}
+             */
             proxy: function(e, tagName){
                 e = e || window.event;
                 var oTarget = e.target || e.srcElement;
