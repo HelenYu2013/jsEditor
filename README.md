@@ -2,6 +2,7 @@
 
 暂时用在社交名片项目中。。
 
++ defaultIframeContent 默认iframe中存在的文字
 + ifWidth: 300 iframe宽度
 + ifHeight: 400 iframe高度
 + menuObj: null 功能区按钮存放位置
