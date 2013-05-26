@@ -1,6 +1,8 @@
 ##编辑器##
 
-暂时用在社交名片项目中。。
+> 暂时用在社交名片项目中
+
+**html结构中需要有一个盛放按钮区的容器和一个iframe容器**
 
 + defaultIframeContent 默认iframe中存在的文字
 + ifWidth: 300 iframe宽度
