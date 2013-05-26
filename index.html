@@ -33,14 +33,33 @@
     };
     (function(window, undefined){
         var defaultConfig = {
+            defaultIframeContent: '',
             ifWidth: 300,
             ifHeight: 400,
             menuObj: null,
-            menu: ['bold','italic','underline','jcenter','jleft','jright','createlink','image','html','fontFamily','fontSize','fontColor'],
-            callback: function(){}
+            menu:[
+                {'type':'bold','name':'B'},
+                {'type':'italic','name':'I'},
+                {'type':'underline','name':'U'},
+                {'type':'justifycenter','name':'C'},
+                {'type':'justifyleft','name':'L'},
+                {'type':'justifyright','name':'R'},
+                {'type':'outdent','name':'outdent'},
+                {'type':'indent','name':'indent'},
+                {'type':'insertunorderedlist','name':'ul'},
+                {'type':'insertorderedlist','name':'ol'},
+                {'type':'createlink','name':'link'},
+                {'type':'insertimage','name':'img'},
+                {'type':'html','name':'HTML'},
+                {'type':'fontFamily','name':'fontFamily'},
+                {'type':'fontSize','name':'fontSize'},
+                {'type':'fontColor','name':'fontColor'}
+            ],
+           callback: function(){}
         };
         var Editor = function(target, opts){
             this.target = target;
+            this.defaultIframeContent = opts.defaultIframeContent;
             this.ifWidth = opts.ifWidth;
             this.ifHeight = opts.ifHeight;
             this.menuObj = opts.menuObj;
@@ -69,19 +88,21 @@
                 self.iframeDocument = self.iframe.contentDocument || self.iframe.contentWindow.document;
                 self.iframeDocument.designMode = "on";
                 self.iframeDocument.open();
-                self.iframeDocument.write('<html><head><style type="text/css">body{ font-family:arial; font-size:13px;background:#f1f1f1 }</style></head></html>');
+                var html = '<html><head><style type="text/css">body{ font-family:arial; font-size:13px;background:#f1f1f1 }</style>' +
+                                '</head><body>'+self.defaultIframeContent+'</body></html>';
+                self.iframeDocument.write(html);
                 self.iframeDocument.close();
             },
             /**
              * 功能区
              */
             createMenu: function(){
-                var newArr = [];
+                var newArr = [],
                     self = this,
                     len = self.menu.length,
                     i = 0;
                 for(; i < len; i++){
-                    newArr.push('<sub data-type="'+self.menu[i]+'">'+self.menu[i]+'</sub>');
+                    newArr.push('<sub data-type="'+self.menu[i]['type']+'" class="nsEditor'+self.menu[i]['type']+'">'+self.menu[i]['name']+'</sub>');
                 }
                 self.menuObj.innerHTML =  newArr.join('');
             },
