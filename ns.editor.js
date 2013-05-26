@@ -156,7 +156,3 @@ var n = {
         new Editor(target,opts);
     }
 }(this));
-
-editor(n.$('editor'),{
-    menuObj: n.$('editorSet')
-});
