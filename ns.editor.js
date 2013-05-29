@@ -31,6 +31,7 @@ var n = {
             {'type':'insertunorderedlist','name':'ul'},
             {'type':'insertorderedlist','name':'ol'},
             {'type':'createlink','name':'link'},
+            {'type':'unlink','name':'unlink'},
             {'type':'insertimage','name':'img'},
             {'type':'html','name':'HTML'},
             {'type':'fontFamily','name':'fontFamily'},
