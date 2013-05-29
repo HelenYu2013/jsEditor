@@ -114,8 +114,11 @@ var n = {
             var self = this;
             switch(command){
                 case 'createlink':
-                case 'image':
                     var value = prompt('请输入超链接:', 'http://');
+                        self.iframeDocument.execCommand(command,false,value);
+                        break;
+                case 'image':
+                    var value = self.imageUpload();
                     self.iframeDocument.execCommand(command,false,value);
                     break;
                 case "html"://查看源码
@@ -137,6 +140,9 @@ var n = {
                     self.iframeDocument.execCommand(command,false,'');
                     self.iframe.contentWindow.focus();
             }
+        },
+        imageUpload: function(){
+            return prompt('请输入图片地址:', 'http://');
         },
         cssRules: function(el, rule, val){
             el.style[rule] = val;
