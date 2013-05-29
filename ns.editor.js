@@ -46,6 +46,7 @@ var n = {
         this.ifHeight = opts.ifHeight;
         this.menuObj = opts.menuObj;
         this.menu = opts.menu;
+        this.before = opts.before;
         this.callback = opts.callback;
 
         this.switchEditMode = true;
@@ -54,6 +55,7 @@ var n = {
     }
     Editor.prototype = {
         init: function(){
+            this.before.call(this);
             this.target.style.display = "none";
             this.createIframe();
             this.createMenu();
@@ -99,7 +101,11 @@ var n = {
                     self.changeStyle(oTarget.getAttribute('data-type'));
                 }
             });
+            self.on(self.iframe.contentWindow.document, 'keyup',  self.keyup);
+            self.on(self.iframe.contentWindow.document, 'blur',  self.blur);
         },
+        keyup: function(e){},
+        blur: function(e){},
         /**
          * 给当前文档或者选中内容添加样式
          * @param command
